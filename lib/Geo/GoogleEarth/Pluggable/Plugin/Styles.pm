@@ -2,7 +2,7 @@ package Geo::GoogleEarth::Pluggable::Plugin::Styles;
 use warnings;
 use strict;
 
-our $VERSION='0.01';
+our $VERSION='0.02';
 
 =head1 NAME
 
@@ -16,11 +16,25 @@ Geo::GoogleEarth::Pluggable::Plugin::Styles - Pre-loaded Styles for Geo::GoogleE
 
 =head1 DESCRIPTION
 
+This package provides methods that when called from a Geo::GoogleEarth::Pluggable document or folder object will be autoloaded and available for use. 
+
+If you do not like my colors you can simply at the bottom of your script.
+
+  package Geo::GoogleEarth::Pluggable::Plugin::Styles;
+  use base qw{Geo::GoogleEarth::Pluggable::Plugin::Styles};
+  sub red   {return {red=>255,green=>0,  blue=0,  alpha=>"95%"}};
+  sub blue  {return {red=>0,  green=>0,  blue=255,alpha=>"95%"}};
+  sub green {return {red=>0,  green=>255,blue=0,  alpha=>"95%"}};
+
 =head1 USAGE
 
-=head1 METHODS
+=head1 Styles
 
-=head2 IconStyleRed
+=head2 IconStyles
+
+  my $style=$document->IconStyleRed(alpha=>"90%");
+
+=head3 IconStyleRed
 
 =cut
 
@@ -30,7 +44,7 @@ sub IconStyleRed {
   return $self->IconStyle(color=>$self->red(alpha=>$opt->{"alpha"}));
 }
 
-=head2 IconStyleOrange
+=head3 IconStyleOrange
 
 =cut
 
@@ -40,7 +54,7 @@ sub IconStyleOrange {
   return $self->IconStyle(color=>$self->orange(alpha=>$opt->{"alpha"}));
 }
 
-=head2 IconStyleYellow
+=head3 IconStyleYellow
 
 =cut
 
@@ -50,7 +64,7 @@ sub IconStyleYellow {
   return $self->IconStyle(color=>$self->yellow(alpha=>$opt->{"alpha"}));
 }
 
-=head2 IconStyleGreen
+=head3 IconStyleGreen
 
 =cut
 
@@ -60,7 +74,7 @@ sub IconStyleGreen {
   return $self->IconStyle(color=>$self->green(alpha=>$opt->{"alpha"}));
 }
 
-=head2 IconStyleBlue
+=head3 IconStyleBlue
 
 =cut
 
@@ -70,7 +84,7 @@ sub IconStyleBlue {
   return $self->IconStyle(color=>$self->blue(alpha=>$opt->{"alpha"}));
 }
 
-=head2 IconStylePurple
+=head3 IconStylePurple
 
 =cut
 
@@ -80,7 +94,7 @@ sub IconStylePurple {
   return $self->IconStyle(color=>$self->purple(alpha=>$opt->{"alpha"}));
 }
 
-=head2 IconStyleWhite
+=head3 IconStyleWhite
 
 =cut
 
@@ -90,7 +104,7 @@ sub IconStyleWhite {
   return $self->IconStyle(color=>$self->white(alpha=>$opt->{"alpha"}));
 }
 
-=head2 IconStyleGray
+=head3 IconStyleGray
 
 =cut
 
@@ -100,7 +114,7 @@ sub IconStyleGray {
   return $self->IconStyle(color=>$self->gray(alpha=>$opt->{"alpha"}));
 }
 
-=head2 IconStyleBlack
+=head3 IconStyleBlack
 
 =cut
 
@@ -110,7 +124,9 @@ sub IconStyleBlack {
   return $self->IconStyle(color=>$self->black(alpha=>$opt->{"alpha"}));
 }
 
-=head2 IconStyleRedDot
+=head3 IconStyleRedDot
+
+  my $style=$document->IconStyleRedDot(alpha=>"90%"); #Typical call
 
 =cut
 
@@ -120,7 +136,7 @@ sub IconStyleRedDot {
   return $self->IconStyle(color=>$self->red(alpha=>$opt->{"alpha"}), href=>$self->dot);
 }
 
-=head2 IconStyleOrangeDot
+=head3 IconStyleOrangeDot
 
 =cut
 
@@ -130,7 +146,7 @@ sub IconStyleOrangeDot {
   return $self->IconStyle(color=>$self->orange(alpha=>$opt->{"alpha"}), href=>$self->dot);
 }
 
-=head2 IconStyleYellowDot
+=head3 IconStyleYellowDot
 
 =cut
 
@@ -140,7 +156,7 @@ sub IconStyleYellowDot {
   return $self->IconStyle(color=>$self->yellow(alpha=>$opt->{"alpha"}), href=>$self->dot);
 }
 
-=head2 IconStyleGreenDot
+=head3 IconStyleGreenDot
 
 =cut
 
@@ -150,7 +166,7 @@ sub IconStyleGreenDot {
   return $self->IconStyle(color=>$self->green(alpha=>$opt->{"alpha"}), href=>$self->dot);
 }
 
-=head2 IconStyleBlueDot
+=head3 IconStyleBlueDot
 
 =cut
 
@@ -160,7 +176,7 @@ sub IconStyleBlueDot {
   return $self->IconStyle(color=>$self->blue(alpha=>$opt->{"alpha"}), href=>$self->dot);
 }
 
-=head2 IconStylePurpleDot
+=head3 IconStylePurpleDot
 
 =cut
 
@@ -170,7 +186,7 @@ sub IconStylePurpleDot {
   return $self->IconStyle(color=>$self->purple(alpha=>$opt->{"alpha"}), href=>$self->dot);
 }
 
-=head2 IconStyleWhiteDot
+=head3 IconStyleWhiteDot
 
 =cut
 
@@ -180,7 +196,7 @@ sub IconStyleWhiteDot {
   return $self->IconStyle(color=>$self->white(alpha=>$opt->{"alpha"}), href=>$self->dot);
 }
 
-=head2 IconStyleGrayDot
+=head3 IconStyleGrayDot
 
 =cut
 
@@ -190,7 +206,7 @@ sub IconStyleGrayDot {
   return $self->IconStyle(color=>$self->gray(alpha=>$opt->{"alpha"}), href=>$self->dot);
 }
 
-=head2 IconStyleBlackDot
+=head3 IconStyleBlackDot
 
 =cut
 
@@ -200,7 +216,9 @@ sub IconStyleBlackDot {
   return $self->IconStyle(color=>$self->black(alpha=>$opt->{"alpha"}), href=>$self->dot);
 }
 
-=head2 IconStylePaddle
+=head3 IconStylePaddle
+
+  my $style=$document->IconStylePaddle("paddle-type"); #see paddle method
 
 =cut
 
@@ -210,7 +228,12 @@ sub IconStylePaddle {
   return $self->IconStyle(href=>$self->paddle($type));
 }
 
-=head2 LineStyleRed
+=head2 LineStyles
+
+=head3 LineStyleRed
+
+  my $style=$document->LineStyleRed(width=>2,
+                                    alpha=>"90%");
 
 =cut
 
@@ -221,7 +244,7 @@ sub LineStyleRed {
                           color=>$self->red(alpha=>$opt->{"alpha"}));
 }
 
-=head2 LineStyleOrange
+=head3 LineStyleOrange
 
 =cut
 
@@ -232,7 +255,7 @@ sub LineStyleOrange {
                           color=>$self->orange(alpha=>$opt->{"alpha"}));
 }
 
-=head2 LineStyleYellow
+=head3 LineStyleYellow
 
 =cut
 
@@ -243,7 +266,7 @@ sub LineStyleYellow {
                           color=>$self->yellow(alpha=>$opt->{"alpha"}));
 }
 
-=head2 LineStyleGreen
+=head3 LineStyleGreen
 
 =cut
 
@@ -254,7 +277,7 @@ sub LineStyleGreen {
                           color=>$self->green(alpha=>$opt->{"alpha"}));
 }
 
-=head2 LineStyleBlue
+=head3 LineStyleBlue
 
 =cut
 
@@ -265,7 +288,7 @@ sub LineStyleBlue {
                           color=>$self->blue(alpha=>$opt->{"alpha"}));
 }
 
-=head2 LineStylePurple
+=head3 LineStylePurple
 
 =cut
 
@@ -276,7 +299,7 @@ sub LineStylePurple {
                           color=>$self->purple(alpha=>$opt->{"alpha"}));
 }
 
-=head2 LineStyleWhite
+=head3 LineStyleWhite
 
 =cut
 
@@ -287,7 +310,7 @@ sub LineStyleWhite {
                           color=>$self->white(alpha=>$opt->{"alpha"}));
 }
 
-=head2 LineStyleGray
+=head3 LineStyleGray
 
 =cut
 
@@ -298,7 +321,7 @@ sub LineStyleGray {
                           color=>$self->gray(alpha=>$opt->{"alpha"}));
 }
 
-=head2 LineStyleBlack
+=head3 LineStyleBlack
 
 =cut
 
@@ -309,7 +332,13 @@ sub LineStyleBlack {
                           color=>$self->black(alpha=>$opt->{"alpha"}));
 }
 
-=head2 AreaStyleRed
+=head2 PolyStyles
+
+PolyStyles are AreaStyles with a LineStyle
+
+=head3 AreaStyleRed
+
+  my $style=$document->AreaStyleRed(alpha=>"90%");
 
 =cut
 
@@ -319,9 +348,10 @@ sub AreaStyleRed {
   return $self->PolyStyle(color=>$self->red(alpha=>$opt->{"alpha"}));
 }
 
-=head2 PolyStyleRed
+=head3 PolyStyleRed
 
-A PolyStyle is a AreaStyle plus a LineStyle
+  my $style=$document->AreaStyleRed(width=>2,
+                                    alpha=>"90%");
 
 =cut
 
@@ -334,7 +364,7 @@ sub PolyStyleRed {
                      );
 }
 
-=head2 AreaStyleOrange
+=head3 AreaStyleOrange
 
 =cut
 
@@ -344,9 +374,7 @@ sub AreaStyleOrange {
   return $self->PolyStyle(color=>$self->orange(alpha=>$opt->{"alpha"}));
 }
 
-=head2 PolyStyleOrange
-
-A PolyStyle is a AreaStyle plus a LineStyle
+=head3 PolyStyleOrange
 
 =cut
 
@@ -359,7 +387,7 @@ sub PolyStyleOrange {
                      );
 }
 
-=head2 AreaStyleYellow
+=head3 AreaStyleYellow
 
 =cut
 
@@ -369,9 +397,7 @@ sub AreaStyleYellow {
   return $self->PolyStyle(color=>$self->yellow(alpha=>$opt->{"alpha"}));
 }
 
-=head2 PolyStyleYellow
-
-A PolyStyle is a AreaStyle plus a LineStyle
+=head3 PolyStyleYellow
 
 =cut
 
@@ -384,7 +410,7 @@ sub PolyStyleYellow {
                      );
 }
 
-=head2 AreaStyleGreen
+=head3 AreaStyleGreen
 
 =cut
 
@@ -394,9 +420,7 @@ sub AreaStyleGreen {
   return $self->PolyStyle(color=>$self->green(alpha=>$opt->{"alpha"}));
 }
 
-=head2 PolyStyleGreen
-
-A PolyStyle is a AreaStyle plus a LineStyle
+=head3 PolyStyleGreen
 
 =cut
 
@@ -409,7 +433,7 @@ sub PolyStyleGreen {
                      );
 }
 
-=head2 AreaStyleBlue
+=head3 AreaStyleBlue
 
 =cut
 
@@ -419,9 +443,7 @@ sub AreaStyleBlue {
   return $self->PolyStyle(color=>$self->blue(alpha=>$opt->{"alpha"}));
 }
 
-=head2 PolyStyleBlue
-
-A PolyStyle is a AreaStyle plus a LineStyle
+=head3 PolyStyleBlue
 
 =cut
 
@@ -434,7 +456,7 @@ sub PolyStyleBlue {
                      );
 }
 
-=head2 AreaStylePurple
+=head3 AreaStylePurple
 
 =cut
 
@@ -444,9 +466,7 @@ sub AreaStylePurple {
   return $self->PolyStyle(color=>$self->purple(alpha=>$opt->{"alpha"}));
 }
 
-=head2 PolyStylePurple
-
-A PolyStyle is a AreaStyle plus a LineStyle
+=head3 PolyStylePurple
 
 =cut
 
@@ -459,7 +479,7 @@ sub PolyStylePurple {
                      );
 }
 
-=head2 AreaStyleWhite
+=head3 AreaStyleWhite
 
 =cut
 
@@ -469,9 +489,7 @@ sub AreaStyleWhite {
   return $self->PolyStyle(color=>$self->white(alpha=>$opt->{"alpha"}));
 }
 
-=head2 PolyStyleWhite
-
-A PolyStyle is a AreaStyle plus a LineStyle
+=head3 PolyStyleWhite
 
 =cut
 
@@ -484,7 +502,7 @@ sub PolyStyleWhite {
                      );
 }
 
-=head2 AreaStyleGray
+=head3 AreaStyleGray
 
 =cut
 
@@ -494,9 +512,7 @@ sub AreaStyleGray {
   return $self->PolyStyle(color=>$self->gray(alpha=>$opt->{"alpha"}));
 }
 
-=head2 PolyStyleGray
-
-A PolyStyle is a AreaStyle plus a LineStyle
+=head3 PolyStyleGray
 
 =cut
 
@@ -509,7 +525,7 @@ sub PolyStyleGray {
                      );
 }
 
-=head2 AreaStyleBlack
+=head3 AreaStyleBlack
 
 =cut
 
@@ -519,9 +535,7 @@ sub AreaStyleBlack {
   return $self->PolyStyle(color=>$self->black(alpha=>$opt->{"alpha"}));
 }
 
-=head2 PolyStyleBlack
-
-A PolyStyle is a AreaStyle plus a LineStyle
+=head3 PolyStyleBlack
 
 =cut
 
@@ -534,11 +548,13 @@ sub PolyStyleBlack {
                      );
 }
 
-=head1 colors
+=head2 Colors
 
 All color methods return a hash reference {red=>$R, green=>$G, blue=>$B, alpha=>$A}
 
-=head2 red
+=head3 red
+
+  my $color=$document->red(alpha=>"90%"); #Typical call
 
 =cut
 
@@ -548,7 +564,7 @@ sub red {
   return {red=>192, green=>0, blue=>0, alpha=>$opt->{"alpha"}};
 }
 
-=head2 orange
+=head3 orange
 
 =cut
 
@@ -558,7 +574,7 @@ sub orange {
   return {red=>255, green=>127, blue=>0, alpha=>$opt->{"alpha"}};
 }
 
-=head2 yellow
+=head3 yellow
 
 =cut
 
@@ -568,7 +584,7 @@ sub yellow {
   return {red=>255, green=>255, blue=>0, alpha=>$opt->{"alpha"}};
 }
 
-=head2 green
+=head3 green
 
 =cut
 
@@ -578,7 +594,7 @@ sub green {
   return {red=>0, green=>192, blue=>0, alpha=>$opt->{"alpha"}};
 }
 
-=head2 blue
+=head3 blue
 
 =cut
 
@@ -588,7 +604,7 @@ sub blue {
   return {red=>0, green=>0, blue=>192, alpha=>$opt->{"alpha"}};
 }
 
-=head2 purple
+=head3 purple
 
 =cut
 
@@ -598,7 +614,7 @@ sub purple {
   return {red=>127, green=>0, blue=>127, alpha=>$opt->{"alpha"}};
 }
 
-=head2 white
+=head3 white
 
 =cut
 
@@ -608,7 +624,7 @@ sub white {
   return {red=>255, green=>255, blue=>255, alpha=>$opt->{"alpha"}};
 }
 
-=head2 gray
+=head3 gray
 
 =cut
 
@@ -618,7 +634,7 @@ sub gray {
   return {red=>192, green=>192, blue=>192, alpha=>$opt->{"alpha"}};
 }
 
-=head2 black
+=head3 black
 
 =cut
 
@@ -628,11 +644,11 @@ sub black {
   return {red=>0, green=>0, blue=>0, alpha=>$opt->{"alpha"}};
 }
 
-=head1 Icons
+=head2 Icon URLs
 
 All icon methods return a fully qualified url.
 
-=head2 dot
+=head3 dot
 
   my $url=$folder->dot;
 
@@ -643,7 +659,7 @@ sub dot {
   return $self->shape("shaded_dot");
 }
 
-=head2 paddle
+=head3 paddle
 
   my $url=$folder->paddle;
   my $url=$folder->paddle("red-circle"); #default
@@ -659,7 +675,7 @@ sub paddle {
   return sprintf("http://maps.google.com/mapfiles/kml/paddle/%s.png", $type);
 }
 
-=head2 shape
+=head3 shape
 
   my $url=$folder->shape;
   my $url=$folder->shape("placemark_circle"); #default
@@ -672,7 +688,7 @@ sub shape {
   return sprintf("http://maps.google.com/mapfiles/kml/shapes/%s.png", $type);
 }
 
-=head2 pin
+=head3 pin
 
   my $url=$folder->pin;
   my $url=$folder->pin("ylw"); #default
@@ -708,10 +724,11 @@ This program is free software licensed under the...
 
   The BSD License
 
-The full text of the license can be found in the
-LICENSE file included with this module.
+The full text of the license can be found in the LICENSE file included with this module.
 
 =head1 SEE ALSO
+
+L<Geo::GoogleEarth::Pluggable>
 
 =cut
 
